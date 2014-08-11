@@ -1,14 +1,14 @@
 {
-  "name": "sails-backbone",
+  "name": "sails-backbone-generator",
   "version": "0.0.0",
-  "description": "Generate client-side Backbone.js Models and Collections from a Sails.js API",
+  "description": "Generate client-side Backbone.js Models from a Sails.js API. Uses Backbone Relational to generate relations, and Backbone Validator to generate validation functions.",
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tjwebb/sails-backbone.git"
+    "url": "git://github.com/tjwebb/sails-backbone-generator.git"
   },
   "keywords": [
     "sails.js",
@@ -24,7 +24,17 @@
   "author": "Travis Webb <me@traviswebb.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tjwebb/sails-backbone/issues"
+    "url": "https://github.com/tjwebb/sails-backbone-generator/issues"
   },
-  "homepage": "https://github.com/tjwebb/sails-backbone"
+  "homepage": "https://github.com/tjwebb/sails-backbone-generator",
+  "devDependencies": {
+    "xtuple-api": "0.0.2"
+  },
+  "dependencies": {
+    "anchor": "^0.9.13",
+    "backbone": "^1.1.2",
+    "backbone-relational": "^0.8.8",
+    "backbone-validation": "^0.9.1",
+    "lodash": "^2.4.1"
+  }
 }
