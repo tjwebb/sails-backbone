@@ -25,6 +25,7 @@ function createModel (sails, pkg, name) {
   var globalId = model.globalId;
 
   return {
+    name: name,
     idAttribute: getPrimaryKey(model),
     urlRoot: path.join(sails.config.blueprints.prefix, name),
     defaults: getDefaults(model),
