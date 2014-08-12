@@ -1,4 +1,6 @@
-sails-backbone
+sails-backbone-generator
 ====================
 
-Generate Backbone.js Models and Collections from a Sails.js API
+Generate client-side Backbone.js Models from a Sails.js API. Uses Backbone
+Relational to generate relations, and Backbone Validator to generate validation
+functions.
