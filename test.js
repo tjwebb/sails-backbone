@@ -29,7 +29,7 @@ describe('sails-backbone-generator', function () {
     it('should produce valid backbone models', function () {
       assert(_.all(schema.models, function (model) {
 
-        console.log(model);
+        //console.log(model);
 
 
 
