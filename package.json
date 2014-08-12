@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/tjwebb/sails-backbone-generator",
   "devDependencies": {
+    "congruence": "^1.5.4",
     "mocha": "^1.21.4",
     "xtuple-api": "*"
   },

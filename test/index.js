@@ -1,6 +1,6 @@
 var assert = require('assert');
 var rigger = require('sails-rigged');
-var SailsBackbone = require('./');
+var SailsBackbone = require('../');
 var pkg = require('xtuple-api/package');
 var Backbone = require('backbone-relational');
 
@@ -29,7 +29,7 @@ describe('sails-backbone-generator', function () {
     it('should produce valid backbone models', function () {
       assert(_.all(schema.models, function (model) {
 
-        //console.log(model);
+        console.log(model);
 
 
 
