@@ -1,19 +1,21 @@
 'use strict';
 
+var _ = require('lodash');
 var rules = _.keys(require('anchor/lib/match/rules'));
 var path = require('path');
-var _ = require('lodash');
 
 /**
  * Generate Backbone Models and Collections objects from the Sails.js API.
  * @param sails
  * @param pkg
  */
-exports.create = function (sails, pkg) {
+exports.generate = function (sails, pkg) {
   var domain = _.intersection(_.keys(sails.models), _.keys(sails.controllers));
 
   return {
-    models: _.map(domain, _(createModel).partial(sails, pkg)),
+    models: _.map(domain, function (name) {
+      return createModel(sails, pkg, name);
+    }),
     version: pkg.version
   };
 };
@@ -32,13 +34,15 @@ function createModel (sails, pkg, name) {
 }
 
 function getPrimaryKey (model) {
-  var pk = _.where(model.definition, { primaryKey: true });
+  var pk = _.find(_.keys(model.definition), function (key) {
+    return model.definition[key].primaryKey === true;
+  });
   return pk || 'id';
 }
 
 function getRelations (sails, model) {
   var relationAttributes = _.filter(_.keys(model.definition), function (key) {
-    var attribute = model.attribute[key];
+    var attribute = model.attributes[key];
     return attribute.model || attribute.collection;
   });
   return _.map(relationAttributes, function (key) {
