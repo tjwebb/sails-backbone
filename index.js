@@ -25,7 +25,7 @@ function createModel (sails, pkg, name) {
   var globalId = model.globalId;
 
   return {
-    name: name,
+    name: globalId,
     idAttribute: getPrimaryKey(model),
     urlRoot: path.join(sails.config.blueprints.prefix, name),
     defaults: getDefaults(model),
@@ -62,9 +62,12 @@ function getRelations (sails, model) {
 }
 
 function getValidations (sails, model) {
-  return _.transform(model.definition, function (result, attribute, key) {
-    result[key] = _.pick(attribute, rules);
-  });
+  return _.object(
+    _.keys(model.definition),
+    _.map(model.definition, function (attribute, key) {
+      return _.compact(_.intersection(_.keys(attribute), rules).concat(attribute.type));
+    })
+  );
 }
 
 function getDefaults (model) {

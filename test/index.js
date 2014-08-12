@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var rigger = require('sails-rigged');
 var templates = require('./templates');
@@ -46,10 +48,18 @@ describe('sails-backbone-generator', function () {
 
     it('should produce valid anchor validations', function () {
       _.each(schema.models, function (model) {
-        _.each(model.relations, function (relation) {
-          assert(_.similar(templates.relation, relation));
+        _.each(model.validations, function (validation) {
+          assert(validation.length > 0);
         });
       });
+    });
+
+    it('should be fast (t < 10ms)', function () {
+      this.timeout(1000);
+      var devnull = [ ];
+      for (var i = 0; i < 100; i++) {
+        SailsBackbone.generate(sails, pkg);
+      }
     });
 
   });
