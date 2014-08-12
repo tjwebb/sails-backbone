@@ -28,13 +28,12 @@
   },
   "homepage": "https://github.com/tjwebb/sails-backbone-generator",
   "devDependencies": {
-    "xtuple-api": "0.0.2"
+    "xtuple-api": "*"
   },
   "dependencies": {
     "anchor": "^0.9.13",
     "backbone": "^1.1.2",
     "backbone-relational": "^0.8.8",
-    "backbone-validation": "^0.9.1",
     "lodash": "^2.4.1",
     "sails-rigged": "^0.10.3"
   }
