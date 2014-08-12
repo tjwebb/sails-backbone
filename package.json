@@ -37,6 +37,7 @@
     "backbone": "^1.1.2",
     "backbone-relational": "^0.8.8",
     "lodash": "^2.4.1",
-    "sails-rigged": "^0.10.3"
+    "sails-rigged": "^0.10.3",
+    "underscore": "^1.6.0"
   }
 }

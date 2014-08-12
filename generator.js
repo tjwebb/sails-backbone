@@ -5,7 +5,7 @@ var rules = _.keys(require('anchor/lib/match/rules'));
 var path = require('path');
 
 /**
- * Generate Backbone Models and Collections objects from the Sails.js API.
+ * Generate Backbone-compatible schema from the Sails.js API.
  * @param sails
  * @param pkg
  */

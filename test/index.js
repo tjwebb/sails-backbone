@@ -5,12 +5,13 @@ var rigger = require('sails-rigged');
 var templates = require('./templates');
 var SailsBackbone = require('../');
 var pkg = require('xtuple-api/package');
-var Backbone = require('backbone-relational');
+var Backbone = require('backbone');
+require('backbone-relational');
 var _ = require('lodash');
 _.mixin(require('congruence'));
 
 describe('sails-backbone-generator', function () {
-  var sails;
+  var sails, schema;
 
   before(function (done) {
     this.timeout(10000);
@@ -21,7 +22,6 @@ describe('sails-backbone-generator', function () {
   });
 
   describe('#generate', function () {
-    var schema;
     before(function () {
       schema = SailsBackbone.generate(sails, pkg);
     });
@@ -60,6 +60,34 @@ describe('sails-backbone-generator', function () {
       for (var i = 0; i < 100; i++) {
         SailsBackbone.generate(sails, pkg);
       }
+    });
+
+  });
+
+  describe('#parse', function () {
+    var xm;
+
+    it('should run without error', function () {
+      xm = SailsBackbone.parse(schema);
+      console.log(xm);
+      Backbone.Relational.store.addModelScope(xm);
+    });
+    it('should be fast (t < 5ms)', function () {
+      var devnull = [ ];
+      for (var i = 0; i < 200; i++) {
+        SailsBackbone.parse(schema);
+      }
+    });
+    it('can instantiate new model', function () {
+      var account = new xm.Account();
+    });
+
+  });
+
+  describe.skip('REST', function () {
+
+    it('can make a rest request', function () {
+      // TODO
     });
 
   });
