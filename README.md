@@ -4,8 +4,8 @@ sails-backbone-generator
 [![Build Status](https://travis-ci.org/tjwebb/sails-backbone-generator.svg?branch=master)](https://travis-ci.org/tjwebb/sails-backbone-generator)
 
 Generate client-side Backbone.js Models from a Sails.js API. Uses Backbone
-Relational to generate relations, and Backbone Validator to generate validation
-functions.
+Relational to generate relations, and implements validation rules using Anchor,
+the same library used to validate Sails.js models attributes.
 
 ## Install
 ```sh
@@ -14,8 +14,37 @@ $ npm install sails-backbone-generator --save
 
 ## Usage
 
-#### Server
-In a sails controller or service:
+### Sails.js
+
+#### Model
+```js
+// Automobile.js
+module.exports = {
+  attributes: {
+    name: {
+      type: 'string',
+      alphanum: true,
+      primaryKey: true
+    },
+    color: {
+      type: 'string',
+      enum: [ 'black', 'black' ]
+    }
+  }
+};
+
+// Truck.js
+_.merge(module.exports, require('./Automobile'), {
+  extend: 'Automobile',
+  attributes: {
+    bedlength: {
+      type: 'integer'
+    }
+  }
+};
+```
+
+#### Controller
 ```js
 var SailsBackbone = require('sails-backbone-generator');
 var schema = SailsBackbone.generate(sails);
@@ -24,9 +53,34 @@ res.json(schema);
 
 #### Client
 ```js
-// where xm might be the name of your model namespace
-window.xm = SailsBackbone.parse(schema);
-Backbone.Relational.store.addModelScope(xm);
+app.models = SailsBackbone.parse(schema);
+Backbone.Relational.store.addModelScope(app.models);
+```
+
+Translated into Backbone:
+```js
+xm.Automobile = Backbone.RelationalModel.extend({
+  idAttribute: 'name',
+  urlRoot: 'http://example.com/automobile',
+  validations: {
+    name: {
+      alphanum: true
+    }
+  }
+});
+
+xm.Truck = xm.Automobile.extend({
+  idAttribute: 'name',
+  urlRoot: 'http://example.com/truck',
+  validations: {
+    name: {
+      alphanum: true
+    },
+    bedlength: {
+      integer: true
+    }
+  }
+});
 ```
 
 ## More
