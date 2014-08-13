@@ -1,6 +1,6 @@
 # sails-backbone-generator
 
-[![Build Status](https://travis-ci.org/tjwebb/sails-backbone-generator.svg?branch=master)](https://travis-ci.org/tjwebb/sails-backbone-generator)
+[![Build Status](https://travis-ci.org/tjwebb/sails-backbone.svg?branch=master)](https://travis-ci.org/tjwebb/sails-backbone)
 
 Generate client-side Backbone.js Models from a Sails.js API. Uses Backbone
 Relational to generate relations, and implements validation rules using Anchor,
@@ -83,5 +83,5 @@ xm.Truck = xm.Automobile.extend({
 
 ## More
 - npm: https://www.npmjs.org/package/sails-backbone-generator
-- github: https://github.com/tjwebb/sails-backbone-generator
+- github: https://github.com/tjwebb/sails-backbone
 - License: MIT
