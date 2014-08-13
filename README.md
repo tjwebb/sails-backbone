@@ -1,5 +1,4 @@
-sails-backbone-generator
-====================
+# sails-backbone-generator
 
 [![Build Status](https://travis-ci.org/tjwebb/sails-backbone-generator.svg?branch=master)](https://travis-ci.org/tjwebb/sails-backbone-generator)
 
@@ -14,7 +13,7 @@ $ npm install sails-backbone-generator --save
 
 ## Usage
 
-### Sails.js
+### Sails.js (Server)
 
 #### Model
 ```js
@@ -43,7 +42,6 @@ _.merge(module.exports, require('./Automobile'), {
   }
 };
 ```
-
 #### Controller
 ```js
 var SailsBackbone = require('sails-backbone-generator');
@@ -51,7 +49,7 @@ var schema = SailsBackbone.generate(sails);
 res.json(schema);
 ```
 
-#### Client
+### Browser (Client)
 ```js
 app.models = SailsBackbone.parse(schema);
 Backbone.Relational.store.addModelScope(app.models);
