@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tjwebb/sails-backbone-generator.git"
+    "url": "git://github.com/tjwebb/sails-backbone.git"
   },
   "keywords": [
     "sails.js",
@@ -24,20 +24,20 @@
   "author": "Travis Webb <me@traviswebb.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tjwebb/sails-backbone-generator/issues"
+    "url": "https://github.com/tjwebb/sails-backbone/issues"
   },
-  "homepage": "https://github.com/tjwebb/sails-backbone-generator",
+  "homepage": "https://github.com/tjwebb/sails-backbone",
   "devDependencies": {
     "congruence": "^1.5.4",
     "mocha": "^1.21.4",
-    "xtuple-api": "*"
+    "xtuple-api": "*",
+    "sails-rigged": "^0.10.3"
   },
   "dependencies": {
     "anchor": "^0.9.13",
     "backbone": "^1.1.2",
     "backbone-relational": "^0.8.8",
     "lodash": "^2.4.1",
-    "sails-rigged": "^0.10.3",
     "underscore": "^1.6.0"
   }
 }
