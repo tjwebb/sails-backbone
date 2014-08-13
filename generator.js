@@ -5,17 +5,41 @@ var rules = _.keys(require('anchor/lib/match/rules'));
 var path = require('path');
 
 /**
+ * Return the depth of a model's inheritance. Used as a comparator to
+ * determine the correct order for loading the Backbone models.
+ */
+function depthComparator (model, i, list) {
+  return getDepth(model.name, i, list);
+}
+
+function getDepth (name, i, list, _level) {
+  var level = _level || 0;
+
+  if (_.isUndefined(name)) {
+    return level;
+  }
+  else {
+    var model = findModel(name, list);
+    return getDepth(model.extend, i, list, level + 1);
+  }
+}
+
+var findModel = _.memoize(function (name, list) {
+  return _.find(list, { name: name });
+});
+
+/**
  * Generate Backbone-compatible schema from the Sails.js API.
  * @param sails
  * @param pkg
  */
 module.exports = function (sails, pkg) {
-  var domain = _.intersection(_.keys(sails.models), _.keys(sails.controllers));
-
   return {
-    models: _.map(domain, function (name) {
-      return createModel(sails, pkg, name);
-    }),
+    models: _.chain(_.keys(sails.models))
+      .map(_.partial(createModel, sails, pkg))
+      .compact()
+      .sortBy(depthComparator)
+      .value(),
     version: pkg.version
   };
 };
@@ -24,8 +48,10 @@ function createModel (sails, pkg, name) {
   var model = sails.models[name];
   var globalId = model.globalId;
 
-  return {
+  return globalId && {
+    extend: model.extend,
     name: globalId,
+    mixin: model.mixin,
     idAttribute: getPrimaryKey(model),
     urlRoot: path.join(sails.config.blueprints.prefix, name),
     defaults: getDefaults(model),

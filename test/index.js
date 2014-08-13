@@ -54,7 +54,7 @@ describe('sails-backbone-generator', function () {
       });
     });
 
-    it('should be fast (t < 10ms)', function () {
+    it('should be fast (t < 10ms) * 100', function () {
       this.timeout(1000);
       var devnull = [ ];
       for (var i = 0; i < 100; i++) {
@@ -67,19 +67,26 @@ describe('sails-backbone-generator', function () {
   describe('#parse', function () {
     var xm;
 
+    before(function () {
+      schema = SailsBackbone.generate(sails, pkg);
+    });
+
     it('should run without error', function () {
       xm = SailsBackbone.parse(schema);
-      console.log(xm);
       Backbone.Relational.store.addModelScope(xm);
     });
-    it('should be fast (t < 5ms)', function () {
-      var devnull = [ ];
+    it('should be fast (t < 5ms) * 200', function () {
+      this.timeout(1000);
       for (var i = 0; i < 200; i++) {
         SailsBackbone.parse(schema);
       }
     });
     it('can instantiate new model', function () {
       var account = new xm.Account();
+    });
+    it('should record proper inheritance in the prototype chain', function () {
+      assert(xm.Account.__super__.name === 'xTupleObject');
+      assert(xm.Country.__super__.name === 'Place');
     });
 
   });
