@@ -13,4 +13,6 @@ deploy:
   api_key:
     secure: Osb0FEyRNti3d82PQB8eyybeWY0q05DZPhwqAcXXl9vLnUCiMVbatYktN6buMObvmL76QHTH6eWSbbzqbVJDYpmLed6yevjMXRaq7PVGeN73m1vgatBlZUc7yfB/1VYha81vj1HF7LnQD2+R+8NnGkDmvOBP4R/e+VPwPixj7qw=
   on:
+    tags: true
     repo: tjwebb/sails-backbone
+    all_branches: true
