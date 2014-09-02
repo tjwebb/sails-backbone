@@ -1,21 +1,23 @@
-# sails-backbone-generator
+# <img src="http://cdn.tjw.io/images/sails-logo.png" height='40px' />-backbone
 
-[![Build Status](https://travis-ci.org/tjwebb/sails-backbone.svg?branch=master)](https://travis-ci.org/tjwebb/sails-backbone)
+[![NPM version][npm-image]][npm-url]
+[![Build status][travis-image]][travis-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
 
 Generate client-side Backbone.js Models from a Sails.js API. Uses Backbone
 Relational to generate relations, and implements validation rules using Anchor,
-the same library used to validate Sails.js models attributes.
+the same library used to validate Sails.js/Waterline Models and Attributes.
 
 ## Install
 ```sh
-$ npm install sails-backbone-generator --save
+$ npm install sails-backbone --save
 ```
 
 ## Usage
 
 ### Sails.js (Server)
 
-#### Model
+#### Example Model
 ```js
 // Automobile.js
 module.exports = {
@@ -41,23 +43,25 @@ _.merge(module.exports, require('./Automobile'), {
     }
   }
 };
+
 ```
 #### Controller
 ```js
-var SailsBackbone = require('sails-backbone-generator');
+var SailsBackbone = require('sails-backbone');
 var schema = SailsBackbone.generate(sails);
 res.json(schema);
 ```
 
 ### Browser (Client)
 ```js
+var app = { };
 app.models = SailsBackbone.parse(schema);
 Backbone.Relational.store.addModelScope(app.models);
 ```
 
 Translated into Backbone:
 ```js
-xm.Automobile = Backbone.RelationalModel.extend({
+app.models..Automobile = Backbone.RelationalModel.extend({
   idAttribute: 'name',
   urlRoot: 'http://example.com/automobile',
   validations: {
@@ -67,7 +71,7 @@ xm.Automobile = Backbone.RelationalModel.extend({
   }
 });
 
-xm.Truck = xm.Automobile.extend({
+app.models.Truck = app.models.Automobile.extend({
   idAttribute: 'name',
   urlRoot: 'http://example.com/truck',
   validations: {
@@ -81,7 +85,14 @@ xm.Truck = xm.Automobile.extend({
 });
 ```
 
-## More
-- npm: https://www.npmjs.org/package/sails-backbone-generator
-- github: https://github.com/tjwebb/sails-backbone
-- License: MIT
+## License
+MIT
+
+[sails-logo]: http://cdn.tjw.io/images/sails-logo.png
+[sails-url]: https://sailsjs.org
+[npm-image]: https://img.shields.io/npm/v/sails-backbone.svg?style=flat
+[npm-url]: https://npmjs.org/package/sails-backbone
+[travis-image]: https://img.shields.io/travis/tjwebb/sails-backbone.svg?style=flat
+[travis-url]: https://travis-ci.org/tjwebb/sails-backbone
+[daviddm-image]: http://img.shields.io/david/tjwebb/sails-backbone.svg?style=flat
+[daviddm-url]: https://david-dm.org/tjwebb/sails-backbone
