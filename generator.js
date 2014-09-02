@@ -4,10 +4,6 @@ var _ = require('lodash');
 var rules = _.keys(require('anchor/lib/match/rules'));
 var path = require('path');
 
-function publicModels (sails) {
-  return _.intersection(_.keys(sails.models), _.keys(sails.controllers));
-}
-
 /**
  * Return the depth of a model's inheritance. Used as a comparator to
  * determine the correct order for loading the Backbone models.
@@ -24,11 +20,11 @@ function getDepth (name, i, list, _level) {
   }
   else {
     var model = findModel(name, list);
-    if (_.isUndefined(model)) {
+    if (!model) {
       return level;
     }
-    if (model.extend === model.name) {
-      throw new Error('The model '+ model.name + ' is trying to extend from itself');
+    if (model.extend === name) {
+      throw new Error('Model '+ name + 'is trying to extend from itself.');
     }
     return getDepth(model.extend, i, list, level + 1);
   }
@@ -45,7 +41,7 @@ var findModel = _.memoize(function (name, list) {
  */
 module.exports = function (sails, pkg) {
   return {
-    models: _.chain(publicModels(sails))
+    models: _.chain(_.keys(sails.models))
       .map(_.partial(createModel, sails, pkg))
       .compact()
       .sortBy(depthComparator)
