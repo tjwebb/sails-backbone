@@ -24,7 +24,7 @@ function getDepth (name, i, list, _level) {
       return level;
     }
     if (model.extend === name) {
-      throw new Error('Model '+ name + 'is trying to extend from itself.');
+      throw new Error('Model '+ name + ' is trying to extend from itself.');
     }
     return getDepth(model.extend, i, list, level + 1);
   }
