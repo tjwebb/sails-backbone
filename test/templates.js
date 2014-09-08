@@ -11,7 +11,7 @@ exports.model = {
     return _.isFunction(defaults) || _.isObject(defaults);
   },
   relations: _.isArray,
-  definition: _.isObject
+  validation: _.isObject
 };
 
 exports.relation = {
