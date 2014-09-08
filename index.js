@@ -1,2 +1,3 @@
-exports.generate = require('./generator');
-exports.parse = require('./parser');
+exports.generate = require('./lib/generator');
+exports.parse = require('./lib/parser');
+

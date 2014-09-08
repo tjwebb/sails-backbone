@@ -1,4 +1,4 @@
-# <img src="http://cdn.tjw.io/images/sails-logo.png" height='40px' />-backbone
+# <img src="http://cdn.tjw.io/images/sails-logo.png" height='42px' />-backbone
 
 [![NPM version][npm-image]][npm-url]
 [![Build status][travis-image]][travis-url]
@@ -61,7 +61,7 @@ Backbone.Relational.store.addModelScope(app.models);
 
 Translated into Backbone:
 ```js
-app.models..Automobile = Backbone.RelationalModel.extend({
+app.models.Automobile = Backbone.RelationalModel.extend({
   idAttribute: 'name',
   urlRoot: 'http://example.com/automobile',
   validations: {

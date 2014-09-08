@@ -4,13 +4,13 @@ var assert = require('assert');
 var rigger = require('sails-rigged');
 var templates = require('./templates');
 var SailsBackbone = require('../');
-var pkg = require('xtuple-api/package');
+var version = require('xtuple-api/package').version;
 var Backbone = require('backbone');
 require('backbone-relational');
 var _ = require('lodash');
 _.mixin(require('congruence'));
 
-describe('sails-backbone-generator', function () {
+describe('sails-backbone', function () {
   var sails, schema;
 
   before(function (done) {
@@ -23,7 +23,7 @@ describe('sails-backbone-generator', function () {
 
   describe('#generate', function () {
     before(function () {
-      schema = SailsBackbone.generate(sails, pkg);
+      schema = SailsBackbone.generate(sails, version);
     });
 
     it('should generate a json array', function () {
@@ -46,10 +46,10 @@ describe('sails-backbone-generator', function () {
       });
     });
 
-    it('should produce valid anchor validations', function () {
+    it('should append model definition in a .definition property ', function () {
       _.each(schema.models, function (model) {
-        _.each(model.validations, function (validation) {
-          assert(validation.length > 0);
+        _.each(model.definition, function (attribute) {
+          assert(!_.isEmpty(attribute));
         });
       });
     });
@@ -58,7 +58,7 @@ describe('sails-backbone-generator', function () {
       this.timeout(1000);
       var devnull = [ ];
       for (var i = 0; i < 100; i++) {
-        SailsBackbone.generate(sails, pkg);
+        SailsBackbone.generate(sails, version);
       }
     });
 
@@ -68,7 +68,7 @@ describe('sails-backbone-generator', function () {
     var xm;
 
     before(function () {
-      schema = SailsBackbone.generate(sails, pkg);
+      schema = SailsBackbone.generate(sails, version);
     });
 
     it('should run without error', function () {
