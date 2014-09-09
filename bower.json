@@ -1,7 +1,7 @@
 {
   "name": "sails-backbone-parser",
-  "main": "parser.js",
-  "version": "0.10.6",
+  "main": "lib/parser.js",
+  "version": "0.12.0",
   "homepage": "https://github.com/tjwebb/sails-backbone",
   "authors": [
     "Travis Webb <me@traviswebb.com>"
@@ -25,6 +25,8 @@
     "tests"
   ],
   "dependencies": {
-    "backbone-relational": "~0.8.8"
+    "backbone-relational": "~0.8.8",
+    "backbone-validation": "~0.9.1",
+    "backbone": "~1.1.2"
   }
 }
