@@ -7,11 +7,9 @@ exports.model = {
   name: _.isString,
   idAttribute: _.isString,
   urlRoot: _.isString,
-  defaults: function (defaults) {
-    return _.isFunction(defaults) || _.isObject(defaults);
-  },
   relations: _.isArray,
-  validation: _.isObject
+  _defaults: _.isObject,
+  _validation: _.isObject
 };
 
 exports.relation = {
