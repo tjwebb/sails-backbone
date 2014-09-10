@@ -89,6 +89,8 @@ describe('sails-backbone', function () {
     it('should record proper inheritance in the prototype chain', function () {
       assert(xm.Account.__super__.name === 'xTupleObject');
       assert(xm.Country.__super__.name === 'Place');
+      var account = new xm.Account();
+      assert(account.constructor.__super__.name === 'xTupleObject');
     });
   });
   describe('#validate()', function () {
