@@ -39,7 +39,7 @@
     "backbone-relational": "^0.8.8",
     "backbone-validation": "^0.9.1",
     "lodash": "^2.4.1",
-    "sails-generate-backbone-api": "^1.0.0",
+    "sails-generate-backbone-api": "^1.0.1",
     "underscore": "^1.6.0",
     "xtuple-api": "*"
   }

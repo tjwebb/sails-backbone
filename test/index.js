@@ -1,7 +1,8 @@
 'use strict';
 
 var assert = require('assert');
-var rigger = require('sails-rigged');
+var path = require('path');
+var SailsApp = require('sails').Sails;
 var templates = require('./templates');
 var SailsBackbone = require('../');
 var version = require('xtuple-api/package').version;
@@ -12,19 +13,27 @@ var _ = require('lodash');
 _.mixin(require('congruence'));
 
 describe('sails-backbone', function () {
-  var sails, schema;
+  var schema;
+  var app = new SailsApp();
+  var config = {
+    appPath: path.dirname(require.resolve('xtuple-api')),
+    hooks: {
+      grunt: false
+    }
+  };
 
   before(function (done) {
     this.timeout(10000);
-    rigger.lift('xtuple-api', function (_sails) {
-      sails = _sails;
-      done();
+
+    app.load(config, function (error, sails) {
+      app = sails;
+      done(error);
     });
   });
 
   describe('#generate()', function () {
     before(function () {
-      schema = SailsBackbone.generate(sails, version);
+      schema = SailsBackbone.generate(app, version);
     });
 
     it('should generate a json array', function () {
@@ -59,7 +68,7 @@ describe('sails-backbone', function () {
       this.timeout(1000);
       var devnull = [ ];
       for (var i = 0; i < 100; i++) {
-        SailsBackbone.generate(sails, version);
+        SailsBackbone.generate(app, version);
       }
     });
 
@@ -69,7 +78,7 @@ describe('sails-backbone', function () {
     var xm;
 
     before(function () {
-      schema = SailsBackbone.generate(sails, version);
+      schema = SailsBackbone.generate(app, version);
     });
 
     it('should run without error', function () {
@@ -97,7 +106,7 @@ describe('sails-backbone', function () {
     var xm;
 
     before(function () {
-      schema = SailsBackbone.generate(sails, version);
+      schema = SailsBackbone.generate(app, version);
       xm = SailsBackbone.parse(schema);
       Backbone.Relational.store.addModelScope(xm);
     });
