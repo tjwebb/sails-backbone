@@ -1,4 +1,4 @@
-# <img src="http://cdn.tjw.io/images/sails-logo.png" height='42px' />-backbone
+# <img src="http://cdn.tjw.io/images/sails-logo.png" height='43px' />-backbone
 
 [![NPM version][npm-image]][npm-url]
 [![Build status][travis-image]][travis-url]
@@ -14,75 +14,8 @@ $ npm install sails-backbone --save
 ```
 
 ## Usage
-
-### Sails.js (Server)
-
-#### Example Model
-```js
-// Automobile.js
-module.exports = {
-  attributes: {
-    name: {
-      type: 'string',
-      alphanum: true,
-      primaryKey: true
-    },
-    color: {
-      type: 'string',
-      enum: [ 'black', 'black' ]
-    }
-  }
-};
-
-// Truck.js
-_.merge(module.exports, require('./Automobile'), {
-  extend: 'Automobile',
-  attributes: {
-    bedlength: {
-      type: 'integer'
-    }
-  }
-};
-
-```
-#### Controller
-```js
-var SailsBackbone = require('sails-backbone');
-var schema = SailsBackbone.generate(sails);
-res.json(schema);
-```
-
-### Browser (Client)
-```js
-var app = { };
-app.models = SailsBackbone.parse(schema);
-Backbone.Relational.store.addModelScope(app.models);
-```
-
-Translated into Backbone:
-```js
-app.models.Automobile = Backbone.RelationalModel.extend({
-  idAttribute: 'name',
-  urlRoot: 'http://example.com/automobile',
-  validations: {
-    name: {
-      alphanum: true
-    }
-  }
-});
-
-app.models.Truck = app.models.Automobile.extend({
-  idAttribute: 'name',
-  urlRoot: 'http://example.com/truck',
-  validations: {
-    name: {
-      alphanum: true
-    },
-    bedlength: {
-      integer: true
-    }
-  }
-});
+```sh
+$ sails generate backbone-api
 ```
 
 ## License
