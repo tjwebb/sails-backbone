@@ -30,8 +30,9 @@
   "devDependencies": {
     "congruence": "^1.5.4",
     "mocha": "^1.21.4",
-    "xtuple-api": "*",
-    "sails-rigged": "^0.10.3"
+    "sails": "^0.10.5",
+    "sails-rigged": "^0.10.3",
+    "xtuple-api": "*"
   },
   "dependencies": {
     "anchor": "^0.9.13",
