@@ -1,5 +1,9 @@
 language: node_js
 
+env:
+  global:
+    - NODE_PATH=.
+
 node_js:
   - '0.10'
   - '0.11'
@@ -16,3 +20,6 @@ deploy:
     tags: true
     repo: tjwebb/sails-backbone
     all_branches: true
+
+after_failure:
+  - env
