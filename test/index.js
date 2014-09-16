@@ -5,7 +5,6 @@ var path = require('path');
 var SailsApp = require('sails').Sails;
 var templates = require('./templates');
 var SailsBackbone = require('../');
-var version = require('xtuple-api/package').version;
 var Backbone = require('backbone');
 require('backbone-relational');
 require('backbone-validation');
@@ -33,13 +32,12 @@ describe('sails-backbone', function () {
 
   describe('#generate()', function () {
     before(function () {
-      schema = SailsBackbone.generate(app, version);
+      schema = SailsBackbone.generate(app);
     });
 
     it('should generate a json array', function () {
       assert(_.isObject(schema));
       assert(_.isArray(schema.models));
-      assert(_.isString(schema.version));
     });
 
     it('should produce valid backbone models', function () {
@@ -68,7 +66,7 @@ describe('sails-backbone', function () {
       this.timeout(1000);
       var devnull = [ ];
       for (var i = 0; i < 100; i++) {
-        SailsBackbone.generate(app, version);
+        SailsBackbone.generate(app);
       }
     });
 
@@ -78,7 +76,7 @@ describe('sails-backbone', function () {
     var xm;
 
     before(function () {
-      schema = SailsBackbone.generate(app, version);
+      schema = SailsBackbone.generate(app);
     });
 
     it('should run without error', function () {
@@ -101,14 +99,32 @@ describe('sails-backbone', function () {
       var account = new xm.Account();
       assert(account.constructor.__super__.name === 'xTupleObject');
     });
+    it('should mixin any existing models of the same name', function () {
+      var ns = {
+        Account: {
+          foo: function () {
+            return 'bar';
+          },
+          whoami: function () {
+            return this.name;
+          }
+        }
+      };
+      var xm = SailsBackbone.parse(schema, ns);
+
+      var account = new xm.Account();
+      assert(_.isFunction(account.foo));
+      assert(_.isFunction(account.whoami));
+      assert(account.foo() === 'bar');
+      assert(account.whoami() === xm.Account.prototype.name, account.whoami());
+    });
   });
   describe('#validate()', function () {
     var xm;
 
     before(function () {
-      schema = SailsBackbone.generate(app, version);
+      schema = SailsBackbone.generate(app);
       xm = SailsBackbone.parse(schema);
-      Backbone.Relational.store.addModelScope(xm);
     });
 
     it('should invalidate an invalid model using default validators', function (done) {
@@ -116,6 +132,7 @@ describe('sails-backbone', function () {
         name: 1,
         active: 'hello'
       });
+      console.log(xm.Role.prototype);
       role.once('validated', function (isValid, model, errors) {
         assert(!isValid);
         if (!_.isEmpty(errors)) {
@@ -129,7 +146,7 @@ describe('sails-backbone', function () {
       });
       role.validate();
     });
-    it('should validate an legit model using default validators', function (done) {
+    it('should validate a legit model using default validators', function (done) {
       var role = new xm.Role({
         name: 'role1',
         active: true
