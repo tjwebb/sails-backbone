@@ -31,7 +31,7 @@
     "congruence": "^1.5.4",
     "mocha": "^1.21.4",
     "sails": "^0.10.5",
-    "xtuple-api": "0.0.11"
+    "xtuple-api": "*"
   },
   "dependencies": {
     "anchor": "^0.9.13",
