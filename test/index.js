@@ -132,7 +132,7 @@ describe('sails-backbone', function () {
         name: 1,
         active: 'hello'
       });
-      console.log(xm.Role.prototype);
+      //console.log(xm.Role.prototype);
       role.once('validated', function (isValid, model, errors) {
         assert(!isValid);
         if (!_.isEmpty(errors)) {
