@@ -33,7 +33,7 @@
     "sails": "^0.10.5"
   },
   "optionalDependencies": {
-    "xtuple-api": "*"
+    "xtuple-api": "latest"
   },
   "dependencies": {
     "anchor": "^0.9.13",
