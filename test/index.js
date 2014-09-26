@@ -62,8 +62,8 @@ describe('sails-backbone', function () {
       });
     });
 
-    it('should be fast (t < 10ms) * 100', function () {
-      this.timeout(1000);
+    it('should be fast (t < 20ms) * 100', function () {
+      this.timeout(2000);
       var devnull = [ ];
       for (var i = 0; i < 100; i++) {
         SailsBackbone.generate(app);
@@ -83,9 +83,9 @@ describe('sails-backbone', function () {
       xm = SailsBackbone.parse(schema);
       Backbone.Relational.store.addModelScope(xm);
     });
-    it('should be fast (t < 5ms) * 200', function () {
-      this.timeout(1000);
-      for (var i = 0; i < 200; i++) {
+    it('should be fast (t < 20ms) * 100', function () {
+      this.timeout(2000);
+      for (var i = 0; i < 100; i++) {
         SailsBackbone.parse(schema);
       }
     });
