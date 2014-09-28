@@ -7,8 +7,9 @@ module.exports = function (sails) {
   return {
     initialize: function (next) {
       sails.after('hook:orm:loaded', function () {
-        BackboneModel.count().then(function (count) {
-          if (count > 0) return next();
+        BackboneModel.find().then(function (models) {
+          if (_.isArray(models) && models.length > 0) return next();
+
           createBackboneModels(next);
         });
       });
