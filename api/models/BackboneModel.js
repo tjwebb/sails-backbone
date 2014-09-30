@@ -5,11 +5,14 @@ module.exports = {
   autoPK: false,
   autoCreatedAt: false,
   autoUpdatedAt: false,
-  schema: false,
 
   attributes: {
     name: {
+      type: 'string',
       primaryKey: true
+    },
+    json: {
+      type: 'json'
     }
   }
 };

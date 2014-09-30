@@ -13,7 +13,7 @@ module.exports = {
   index: function (req, res) {
     BackboneModel.find({ sort: 'index ASC', limit: 999 })
       .then(function (models) {
-        res.json(models);
+        res.json(_.pluck(models, 'json'));
       })
       .catch(req.error);
   }
