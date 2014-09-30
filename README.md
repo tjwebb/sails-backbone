@@ -14,9 +14,21 @@ $ npm install sails-backbone --save
 ```
 
 ## Usage
+
+#### Sails Generator
 ```sh
 $ sails generate backbone-api
 ```
+
+#### Browser
+```js
+var schema = { /* result from SailsBackbone.generate */ };
+var parseBackboneModels = require('sails-backbone/lib/parser');
+var models = { };
+parseBackboneModels(schema, models);
+```
+
+
 
 ## License
 MIT
