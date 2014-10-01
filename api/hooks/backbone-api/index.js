@@ -26,7 +26,6 @@ function createBackboneModels (sails, next) {
   var backboneApi = SailsBackbone.generate(sails);
   var backboneModels = _.map(backboneApi.models, function (model, index) {
     model.index = index;
-    console.log('creating backbone model', model);
     return BackboneModel.create({ name: model.name, json: model });
   });
 
