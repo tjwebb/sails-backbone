@@ -1,9 +1,4 @@
-/**
- * @module <%= entity %>
- */
-
 module.exports = {
-
   /**
    * Return ordered list of Backbone.js Models. This output can be fed into
    * SailsBackbone.parse().
@@ -15,6 +10,9 @@ module.exports = {
       .then(function (models) {
         res.json(_.pluck(models, 'json'));
       })
-      .catch(req.error);
+      .catch(function (error) {
+        sails.log.error(error);
+        res.json(500, error);
+      });
   }
 };
