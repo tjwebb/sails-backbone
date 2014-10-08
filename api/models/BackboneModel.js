@@ -11,6 +11,9 @@ module.exports = {
       type: 'string',
       primaryKey: true
     },
+    index: {
+      type: 'integer'
+    },
     json: {
       type: 'json'
     }
