@@ -72,7 +72,7 @@ describe('sails-backbone', function () {
 
   });
 
-  describe('#parse()', function () {
+  describe.skip('#parse()', function () {
     var xm;
 
     before(function () {
@@ -119,7 +119,7 @@ describe('sails-backbone', function () {
       assert(account.whoami() === xm.Account.prototype.name, account.whoami());
     });
   });
-  describe('#validate()', function () {
+  describe.skip('#validate()', function () {
     var xm;
 
     before(function () {
