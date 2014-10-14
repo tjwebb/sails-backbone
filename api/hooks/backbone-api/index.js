@@ -31,7 +31,7 @@ function createBackboneModels (sails, next) {
   });
 
   return Promise
-    .map(backboneModels)
+    .all(backboneModels)
     .then(function (models) {
       sails.log('backbone models created');
       next();
