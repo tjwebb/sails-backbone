@@ -8,14 +8,15 @@ module.exports = function (sails) {
     initialize: function (next) {
       sails.after('hook:orm:loaded', function () {
         sails.log('backbone-api hook running');
+        createBackboneModels(sails, next);
+        /*
         BackboneModel.find()
           .then(function (models) {
             sails.log('found', models.length, 'backbone models.');
-            if (_.isArray(models) && models.length > 0) return next();
 
-            createBackboneModels(sails, next);
           })
           .catch(next);
+        */
       });
     }
   };
@@ -35,5 +36,8 @@ function createBackboneModels (sails, next) {
       sails.log('backbone models created');
       next();
     })
-    .catch(next);
+    .catch(function (error) {
+      sails.warn(error);
+      next();
+    });
 }
