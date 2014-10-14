@@ -31,13 +31,12 @@ function createBackboneModels (sails, next) {
   });
 
   return Promise
-    .all(backboneModels)
+    .map(backboneModels)
     .then(function (models) {
       sails.log('backbone models created');
       next();
     })
     .catch(function (error) {
-      sails.warn(error);
       next();
     });
 }
