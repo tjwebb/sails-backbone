@@ -15,19 +15,23 @@ $ npm install sails-backbone --save
 
 ## Usage
 
-#### Sails Generator
+### 1. update sailsrc
+
+```json
+{
+  "generators": {
+    "backbone-api": "sails-backbone"
+  }
+}
+```
+
+### 2. run generator
 ```sh
 $ sails generate backbone-api
 ```
 
 #### Browser
-```js
-var schema = { /* result from SailsBackbone.generate */ };
-var parseBackboneModels = require('sails-backbone/lib/parser');
-var models = { };
-parseBackboneModels(schema, models);
-```
-
+See [sails-backbone-client](https://github.com/tjwebb/sails-backbone-client)
 
 
 ## License
