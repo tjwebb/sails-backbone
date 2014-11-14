@@ -1,4 +1,4 @@
-var SailsBackbone = require('../../../');
+var BackboneGenerator = require('../../../lib/generator');
 
 /**
  * Generate the Backbone Models and cache in the datastore. 

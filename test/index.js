@@ -4,7 +4,7 @@ var assert = require('assert');
 var path = require('path');
 var SailsApp = require('sails').Sails;
 var templates = require('./templates');
-var SailsBackbone = require('../');
+var BackboneGenerator = require('../lib/generator');
 var _ = require('lodash');
 _.mixin(require('congruence'));
 
@@ -29,7 +29,7 @@ describe('sails-backbone', function () {
 
   describe('#generate()', function () {
     before(function () {
-      schema = SailsBackbone.generate(app);
+      schema = BackboneGenerator.generate(app);
     });
 
     it('should generate a json array', function () {
@@ -63,7 +63,7 @@ describe('sails-backbone', function () {
       this.timeout(2000);
       var devnull = [ ];
       for (var i = 0; i < 100; i++) {
-        SailsBackbone.generate(app);
+        BackboneGenerator.generate(app);
       }
     });
 
