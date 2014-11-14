@@ -20,7 +20,9 @@ $ npm install sails-backbone --save
 ```json
 {
   "generators": {
-    "backbone-api": "sails-backbone"
+    "modules": {
+      "backbone-api": "sails-backbone"
+    }
   }
 }
 ```
