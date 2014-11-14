@@ -24,7 +24,7 @@ module.exports = function (sails) {
 
 function createBackboneModels (sails, next) {
   var pkg;
-  var backboneApi = SailsBackbone.generate(sails);
+  var backboneApi = BackboneGenerator.generate(sails);
   var backboneModels = _.map(backboneApi.models, function (model, index) {
     model.index = index;
     return BackboneModel.create({ name: model.name, json: model, index: index });
