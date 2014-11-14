@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/tjwebb/sails-backbone",
   "devDependencies": {
-    "congruence": "^1.5.4",
+    "congruence": "^1.6",
     "mocha": "^1.21.4",
     "sails": "^0.10.5"
   },
@@ -36,7 +36,7 @@
     "xtuple-api": "latest"
   },
   "dependencies": {
-    "anchor": "^0.9.13",
+    "anchor": "^0.10",
     "lodash": "^2.4.1",
     "sails-generate-backbone-api": "^1.0.1"
   }
