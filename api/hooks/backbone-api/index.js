@@ -1,4 +1,5 @@
 var BackboneGenerator = require('../../../lib/generator');
+var Promise = require('bluebird');
 
 /**
  * Generate the Backbone Models and cache in the datastore. 
