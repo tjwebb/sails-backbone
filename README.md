@@ -10,7 +10,7 @@ the same library used to validate Sails.js/Waterline Models and Attributes.
 
 ## Install
 ```sh
-$ npm install sails-backbone --save
+$ npm install lodash sails-backbone --save
 ```
 
 ## Usage
