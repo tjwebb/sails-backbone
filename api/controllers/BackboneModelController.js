@@ -6,7 +6,7 @@ module.exports = {
    * @see <https://github.com/tjwebb/sails-backbone#browser-client>
    */
   index: function (req, res) {
-    BackboneModel.find({ limit: 999 })
+    BackboneModel.find(_.extend({ limit: 999 }, req.query))
       .then(function (models) {
         res.json(_.pluck(models, 'json'));
       })

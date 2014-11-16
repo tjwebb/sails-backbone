@@ -9,7 +9,8 @@ module.exports = {
   attributes: {
     name: {
       type: 'string',
-      primaryKey: true
+      primaryKey: true,
+      unique: true
     },
     index: {
       type: 'integer'
