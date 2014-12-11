@@ -1,4 +1,5 @@
 var BackboneGenerator = require('../../../lib/generator');
+var BackboneParser = require('sails-backbone-client/lib/parser');
 var Promise = require('bluebird');
 
 /**
@@ -7,17 +8,10 @@ var Promise = require('bluebird');
 module.exports = function (sails) {
   return {
     initialize: function (next) {
+
       sails.after('hook:orm:loaded', function () {
         sails.log('backbone-api hook running');
         createBackboneModels(sails, next);
-        /*
-        BackboneModel.find()
-          .then(function (models) {
-            sails.log('found', models.length, 'backbone models.');
-
-          })
-          .catch(next);
-        */
       });
     }
   };
@@ -34,6 +28,12 @@ function createBackboneModels (sails, next) {
   return Promise
     .settle(backboneModels)
     .then(function (results) {
+      _.isObject(sails.api) || (sails.api = { });
+
+      Backbone.Relational.showWarnings = false;
+      Backbone.Relational.store.addModelScope(sails.api);
+      sails.api = BackboneParser.parse(backboneApi.models, sails.api);
+
       next();
     });
 }
