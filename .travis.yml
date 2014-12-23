@@ -11,6 +11,9 @@ node_js:
 notifications:
   email: false
 
+# use docker (http://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure)
+sudo: false
+
 deploy:
   provider: npm
   email: me@traviswebb.com
