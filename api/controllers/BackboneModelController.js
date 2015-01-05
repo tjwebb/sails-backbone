@@ -8,8 +8,8 @@ module.exports = {
   index: function (req, res) {
     sails.log('backbonemodels.index');
     process.nextTick(function () {
+      sails.log('about to query backbone models');
       BackboneModel.find(_.extend({ limit: 999 }, req.query))
-        sails.log('about to query backbone models');
         .then(function (models) {
           sails.log('models queried');
           res.json(_.pluck(models, 'json'));
