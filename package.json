@@ -39,7 +39,7 @@
     "anchor": "^0.10",
     "bluebird": "^2.3.11",
     "lodash": "^2.4.1",
-    "sails-backbone-client": "^0.2.4",
+    "sails-backbone-client": "latest",
     "sails-generate-entities": "^0.10.8"
   }
 }

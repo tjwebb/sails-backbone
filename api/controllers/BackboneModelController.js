@@ -6,13 +6,19 @@ module.exports = {
    * @see <https://github.com/tjwebb/sails-backbone#browser-client>
    */
   index: function (req, res) {
-    BackboneModel.find(_.extend({ limit: 999 }, req.query))
-      .then(function (models) {
-        res.json(_.pluck(models, 'json'));
-      })
-      .catch(function (error) {
-        sails.log.error(error);
-        res.json(500, error);
-      });
+    sails.log('backbonemodels.index');
+    process.nextTick(function () {
+      BackboneModel.find(_.extend({ limit: 999 }, req.query))
+        sails.log('about to query backbone models');
+        .then(function (models) {
+          sails.log('models queried');
+          res.json(_.pluck(models, 'json'));
+        })
+        .catch(function (error) {
+          sails.log(error);
+          sails.log.error(error);
+          res.json(500, error);
+        });
+    });
   }
 };
