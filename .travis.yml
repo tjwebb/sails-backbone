@@ -1,8 +1,12 @@
 language: node_js
 
+services:
+  - redis-server
+
 env:
   global:
     - NODE_PATH=.
+    - REDIS_URL=redis://:@localhost:6379
 
 node_js:
   - '0.10'

@@ -12,7 +12,7 @@ describe('sails-backbone', function () {
   var schema;
   var app = new SailsApp();
   var config = {
-    appPath: path.dirname(require.resolve('xtuple-api')),
+    appPath: path.dirname(require.resolve('hashware-api')),
     hooks: {
       grunt: false
     }
@@ -61,7 +61,6 @@ describe('sails-backbone', function () {
 
     it('should be fast (t < 20ms) * 100', function () {
       this.timeout(2000);
-      var devnull = [ ];
       for (var i = 0; i < 100; i++) {
         BackboneGenerator.generate(app);
       }

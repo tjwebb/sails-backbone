@@ -33,7 +33,7 @@
     "sails": "^0.10.5"
   },
   "optionalDependencies": {
-    "xtuple-api": "latest"
+    "hashware-api": "latest"
   },
   "dependencies": {
     "anchor": "^0.10",
