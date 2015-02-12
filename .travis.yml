@@ -19,7 +19,7 @@ notifications:
 sudo: false
 
 before_script:
-  - npm install -g    # so that hashware-api uses this module instead of dl from npm
+  - npm link   # so that hashware-api uses this module instead of dl from npm
 
 deploy:
   provider: npm
