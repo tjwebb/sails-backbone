@@ -21,6 +21,7 @@ sudo: false
 before_script:
   - cd node_modules/hashware-api
   - npm link ../../
+  - cd ../..
 
 deploy:
   provider: npm
