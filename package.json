@@ -30,7 +30,7 @@
   "devDependencies": {
     "congruence": "^1.6",
     "mocha": "^1.21.4",
-    "sails": "^0.10.5"
+    "sails": "^0.11"
   },
   "optionalDependencies": {
     "hashware-api": "latest"
@@ -42,6 +42,6 @@
     "bluebird": "^2.5",
     "lodash": "^3.2.0",
     "sails-backbone-client": "latest",
-    "sails-generate-entities": "^0.10.8"
+    "sails-generate-entities": "latest"
   }
 }

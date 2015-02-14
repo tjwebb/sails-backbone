@@ -32,7 +32,7 @@ $ npm install lodash sails-backbone --save
 $ sails generate backbone-api
 ```
 
-#### Browser
+#### Install in Browser
 See [sails-backbone-client](https://github.com/tjwebb/sails-backbone-client)
 
 
