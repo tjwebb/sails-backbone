@@ -1,16 +1,13 @@
-/**
- * BackboneModel.js
- */
 module.exports = {
   autoPK: false,
+  autoCreatedBy: false,
   autoCreatedAt: false,
   autoUpdatedAt: false,
 
   attributes: {
     name: {
       type: 'string',
-      primaryKey: true,
-      unique: true
+      primaryKey: true
     },
     index: {
       type: 'integer'
