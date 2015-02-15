@@ -1,8 +1,8 @@
+var Backbone = require('backbone');
+require('backbone-relational');
 var BackboneGenerator = require('../../../lib/generator');
 var BackboneParser = require('sails-backbone-client/lib/parser');
 var Promise = require('bluebird');
-global.Backbone = require('backbone');
-require('backbone-relational');
 
 /**
  * Generate the Backbone Models and cache in the datastore. 

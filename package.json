@@ -30,7 +30,8 @@
   "devDependencies": {
     "congruence": "^1.6",
     "mocha": "^1.21.4",
-    "sails": "^0.11"
+    "sails": "^0.11",
+    "sails-disk": "^0.10.7"
   },
   "optionalDependencies": {
     "hashware-api": "latest"
