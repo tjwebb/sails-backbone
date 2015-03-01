@@ -4,7 +4,7 @@
   "description": "Generate client-side Backbone.js Models from a Sails.js API. Uses Backbone Relational to generate relations, and Backbone Validator to generate validation functions.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "rm -rf .tmp/ && NODE_ENV=test mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,8 @@
     "api",
     "models",
     "mvc",
-    "rest"
+    "rest",
+    "sdk"
   ],
   "author": "Travis Webb <me@traviswebb.com>",
   "license": "MIT",
@@ -31,9 +32,6 @@
     "congruence": "^1.6",
     "mocha": "^1.21.4",
     "sails": "^0.11",
-    "sails-disk": "^0.10.7"
-  },
-  "optionalDependencies": {
     "hashware-api": "latest"
   },
   "dependencies": {

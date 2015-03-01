@@ -8,7 +8,7 @@ var BackboneGenerator = require('../lib/generator');
 var _ = require('lodash');
 _.mixin(require('congruence'));
 
-describe.skip('sails-backbone', function () {
+describe('sails-backbone', function () {
   var schema;
   var app = new SailsApp();
   var config = {
