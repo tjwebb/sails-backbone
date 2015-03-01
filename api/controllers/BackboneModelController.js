@@ -1,24 +1,19 @@
 module.exports = {
   /**
    * Return ordered list of Backbone.js Models. This output can be fed into
-   * SailsBackbone.parse().
+   * SailsBackboneClient.parse().
    *
    * @see <https://github.com/tjwebb/sails-backbone#browser-client>
    */
   index: function (req, res) {
-    sails.log('backbonemodels.index');
-    process.nextTick(function () {
-      sails.log('about to query backbone models');
-      BackboneModel.find(_.extend({ limit: 999 }, req.query))
-        .then(function (models) {
-          sails.log('models queried');
-          res.json(_.pluck(models, 'json'));
-        })
-        .catch(function (error) {
-          sails.log(error);
-          sails.log.error(error);
-          res.json(500, error);
-        });
-    });
+    BackboneModel
+      .find(_.extend({ limit: 999 }, req.query))
+      .then(function (models) {
+        res.json(_.pluck(models, 'json'));
+      })
+      .catch(function (error) {
+        sails.log.error(error);
+        res.status(500).json(error);
+      });
   }
 };
