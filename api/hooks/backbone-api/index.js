@@ -23,12 +23,13 @@ function createBackboneModels (sails, next) {
   var pkg;
   var backboneApi = BackboneGenerator.generate(sails);
   var backboneModels = _.map(backboneApi.models, function (model, index) {
+    sails.log('sails-backbone:', model.name);
     model.index = index;
-    return BackboneModel.findOrCreate(model.name, { name: model.name, json: model, index: index });
+    return BackboneModel.findOrCreate(model.name, { id: model.name, json: model, index: index });
   });
 
   return Promise
-    .settle(backboneModels)
+    .all(backboneModels)
     .then(function (results) {
       _.isObject(sails.api) || (sails.api = { });
 

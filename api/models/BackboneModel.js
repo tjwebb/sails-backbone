@@ -5,7 +5,7 @@ module.exports = {
   autoUpdatedAt: false,
 
   attributes: {
-    name: {
+    id: {
       type: 'string',
       primaryKey: true
     },
@@ -14,6 +14,13 @@ module.exports = {
     },
     json: {
       type: 'json'
+    },
+
+    toJSON: function () {
+      var model = this.toObject();
+      model.name = model.id;
+
+      return model;
     }
   }
 };
