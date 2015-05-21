@@ -1,6 +1,6 @@
 {
   "name": "sails-backbone",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "description": "Generate client-side Backbone.js Models from a Sails.js API. Uses Backbone Relational to generate relations, and Backbone Validator to generate validation functions.",
   "main": "index.js",
   "scripts": {
